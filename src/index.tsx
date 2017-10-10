@@ -2,10 +2,10 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import registerServiceWorker from './registerServiceWorker';
 import './index.css';
-import Hello from './components/Hello';
+import App from './App';
 
 ReactDOM.render(
-  <Hello name="Typescript" enthusiasmLevel={10} />,
+  <App />,
   document.getElementById('root') as HTMLElement
 );
 registerServiceWorker();

@@ -4,6 +4,10 @@ type User = {
     email: string;
 };
 
+interface AppState {
+    user: User;
+}
+
 class Application {
 
 }
