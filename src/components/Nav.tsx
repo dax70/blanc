@@ -35,19 +35,25 @@ export default class Nav extends React.Component<{}, {}> {
                     <input className="pt-input" placeholder="Search files..." type="text" />
                 </div>
                 <div className="pt-navbar-group pt-align-right">                    
+                    <button className="pt-button pt-minimal pt-icon-home">
+                        Home
+                        <Icon className="pt-align-right" iconName="caret-down" />
+                    </button>
                     <Popover 
                         className="main-menu"
                         position={Position.BOTTOM}
                         inheritDarkTheme={false}
                         content={this.createMenu()} 
                         target={
-                            <button className="pt-button pt-minimal pt-icon-home">
-                                Home
-                                <Icon className="pt-align-right" iconName="caret-down" />
+                            <button className="pt-button pt-minimal pt-icon-document">
+                                Files
+                                <Icon 
+                                    className="pt-align-right" 
+                                    iconName="caret-down" 
+                                />                                
                             </button>
                         } 
                     />
-                    <button className="pt-button pt-minimal pt-icon-document">Files</button>
                     <span className="pt-navbar-divider"/>
                     <button className="pt-button pt-minimal pt-icon-user"/>
                     <button className="pt-button pt-minimal pt-icon-notifications"/>

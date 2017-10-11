@@ -4,26 +4,44 @@ import { Menu as AppMenu,
     MenuItemKind as AppMenuItemKind
 } from './Menus';
 import { 
-    Menu, MenuItem, MenuDivider 
+    Menu, MenuItem, MenuDivider,
+    Popover, Position, Icon 
 } from '@blueprintjs/core';
 
 export class MenuAdapter {
     adapt(menu: AppMenu) {
         // Convert to Menu system
-        const items = menu.getItems().map(item => {
+        const items = menu.getItems().map((item, index) => {
             switch (item.kind) {
                 case AppMenuItemKind.separator:
-                    return <MenuDivider />;
+                    return <MenuDivider key={index}/>;
                 case AppMenuItemKind.text:
                 default:
-                    return (<MenuItem {...item}/>);
+                    const { text } = item;
+                    return (<MenuItem key={index} text={text}/>);
             }
         });
 
         return (
-            <Menu>
-                {items}
-            </Menu>
+            <Popover 
+                className="main-menu"
+                position={Position.BOTTOM}
+                inheritDarkTheme={false}
+                content={
+                    <Menu className="pt-elevation-1">
+                        {items}
+                    </Menu>
+                } 
+                target={                    
+                    <button className="pt-button pt-minimal pt-icon-document">
+                        Menu
+                        <Icon 
+                            className="pt-align-right" 
+                            iconName="caret-down" 
+                        />                                
+                    </button>
+                } 
+            />
         );
     }
 }
