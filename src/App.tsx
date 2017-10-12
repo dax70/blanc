@@ -12,17 +12,15 @@ class App extends React.Component {
   
   render() {
     const mainMenu = new Menu();
-    mainMenu.append(new MenuItem({ text: 'Foo' }));
+    mainMenu.append(new MenuItem({ text: 'Foo', iconName: 'pt-icon-user' }));
     mainMenu.append(new MenuItem({ text: 'Bar'}));
     mainMenu.appendDivider();    
-    mainMenu.append(new MenuItem({ text:'Baz' }));
+    mainMenu.append(new MenuItem({ text: 'Baz' }));
     
-    const adapter = new MenuAdapter();
-    const menuEl = adapter.adapt(mainMenu);
     return (
       <div className="App">
         <Nav />
-        {menuEl}
+        <MenuAdapter menu={mainMenu} />
       </div>
     );
   }

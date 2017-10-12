@@ -1,3 +1,5 @@
+import { ButtonProps } from './Core';
+
 export enum MenuItemKind {
     text,
     textIcon,
@@ -9,23 +11,22 @@ type MenuEvent = {
 
 };
 
-// eslint-disable-next-line
-export type MenuItemProps = {
+export interface MenuItemProps extends ButtonProps {
     kind?: MenuItemKind;   
-    text: string;
-    click?: (e: MenuEvent) => void;
-    items: Array<MenuItemProps>;
-};
+    items?: Array<MenuItemProps>;
+}
 
 export class MenuItem {
     kind: MenuItemKind;   
     text: string;
+    iconName?: string;
     click?: (e: MenuEvent) => void;
     items?: Array<MenuItem>;
 
     constructor(props: MenuItemProps) {
-        const { text, kind, click, items } = props;
+        const { text, iconName, kind, click, items } = props;
         this.text = text;
+        this.iconName = iconName;
         this.kind = kind || MenuItemKind.text;
         this.click = click;
         this.items = items ? items.map((i) => new MenuItem(i)) : undefined;
@@ -35,10 +36,10 @@ export class MenuItem {
 
 export class Menu {
 
-    private items: Array<IMenuItem>;
+    private items: Array<MenuItem>;
 
     constructor() {
-        this.items = new Array<IMenuItem>();
+        this.items = new Array<MenuItem>();
     }
 
     append(menuItem: MenuItem) {
