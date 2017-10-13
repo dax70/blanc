@@ -14,8 +14,8 @@ export function convertItem(item: AppMenuItem, index: number) {
             return <MenuDivider key={index}/>;
         case AppMenuItemKind.text:
         default:
-            const { text } = item;
-            return (<MenuItem key={index} text={text} />);
+            const { text, iconName } = item; 
+            return (<MenuItem key={index} text={text} iconName={iconName} />);
     }
 }
 

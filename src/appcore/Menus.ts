@@ -1,4 +1,4 @@
-import { ButtonProps } from './Core';
+import { ButtonProps, IconName } from './Core';
 
 export enum MenuItemKind {
     text,
@@ -19,7 +19,7 @@ export interface MenuItemProps extends ButtonProps {
 export class MenuItem {
     kind: MenuItemKind;   
     text: string;
-    iconName?: string;
+    iconName?: IconName;
     click?: (e: MenuEvent) => void;
     items?: Array<MenuItem>;
 
