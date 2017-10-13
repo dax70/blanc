@@ -16,7 +16,7 @@ export interface ButtonProps {
 export class Button {
     text: string;
     click?: (e: ButtonEvent) => void;
-    iconName?: string;
+    iconName?: IconName;
 
     constructor(props: ButtonProps) {
         Object.assign(this, props);

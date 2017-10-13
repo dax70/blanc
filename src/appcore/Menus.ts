@@ -1,4 +1,4 @@
-import { ButtonProps, IconName } from './Core';
+import { Button, ButtonProps, IconName } from './Core';
 
 export enum MenuItemKind {
     text,
@@ -14,6 +14,20 @@ type MenuEvent = {
 export interface MenuItemProps extends ButtonProps {
     kind?: MenuItemKind;   
     items?: Array<MenuItemProps>;
+}
+
+export interface DropdownProps extends ButtonProps {
+    menu?: Menu;
+}
+
+export class Dropdown extends Button {
+
+    menu?: Menu;
+
+    constructor(props: DropdownProps) {
+        super(props);
+        this.menu = props.menu;
+    }
 }
 
 export class MenuItem {

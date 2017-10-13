@@ -5,8 +5,8 @@ import 'normalize.css/normalize.css';
 import '@blueprintjs/core/dist/blueprint.css';
 import Nav from './components/Nav';
 
-import { Menu, MenuItem } from './appcore/Menus';
-import { MenuAdapter } from './appcore/Adapters';
+import { Dropdown, Menu, MenuItem } from './appcore/Menus';
+import { DropdownAdapter } from './appcore/Adapters';
 
 class App extends React.Component {
   
@@ -17,10 +17,12 @@ class App extends React.Component {
     mainMenu.appendDivider();    
     mainMenu.append(new MenuItem({ text: 'Baz' })); 
     
+    const dropdown = new Dropdown({ text: 'New Dropdwon', menu: mainMenu});
+
     return (
       <div className="App">
         <Nav />
-        <MenuAdapter menu={mainMenu} />
+        <DropdownAdapter dropdown={dropdown} />
       </div>
     );
   }
