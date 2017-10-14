@@ -4,20 +4,22 @@ import {
   Menu as AppMenu,
   MenuItem as AppMenuItem,
   MenuItemKind as AppMenuItemKind
-} from './Menus';
+} from '../appcore/Menu';
 import {
-  Menu, MenuItem, MenuDivider,
+  Menu as BpMenu, 
+  MenuItem as BpMenuItem, 
+  MenuDivider as BpMenuDivider,
   Popover, Position, Icon
 } from '@blueprintjs/core';
 
 export function convertItem(item: AppMenuItem, index: number) {
   switch (item.kind) {
     case AppMenuItemKind.separator:
-      return <MenuDivider key={index} />;
+      return <BpMenuDivider key={index} />;
     case AppMenuItemKind.text:
     default:
-      const { text, iconName } = item;
-      return (<MenuItem key={index} text={text} iconName={iconName} />);
+      const { text, iconName, onClick } = item;
+      return (<BpMenuItem key={index} text={text} iconName={iconName} onClick={onClick}/>);
   }
 }
 
@@ -25,11 +27,11 @@ export interface DropdownProps {
   dropdown: AppDrowndown;
 }
 
-export interface MenuAdapterProps {
+export interface MenuProps {
   menu?: AppMenu;
 }
 
-export class DropdownAdapter extends React.Component<DropdownProps, {}> {
+export class Dropdown extends React.Component<DropdownProps, {}> {
   constructor(props: DropdownProps) {
     super(props);
   }
@@ -41,7 +43,7 @@ export class DropdownAdapter extends React.Component<DropdownProps, {}> {
         className="main-menu"
         position={Position.BOTTOM}
         inheritDarkTheme={false}
-        content={<MenuAdapter menu={dropdown.menu} />}
+        content={<Menu menu={dropdown.menu} />}
         target={
           <button className="pt-button pt-minimal pt-icon-document">
             {dropdown.text}
@@ -56,8 +58,8 @@ export class DropdownAdapter extends React.Component<DropdownProps, {}> {
   }
 }
 
-export class MenuAdapter extends React.Component<MenuAdapterProps, {}> {
-  constructor(props: MenuAdapterProps) {
+export class Menu extends React.Component<MenuProps, {}> {
+  constructor(props: MenuProps) {
     super(props);
   }
 
@@ -66,9 +68,9 @@ export class MenuAdapter extends React.Component<MenuAdapterProps, {}> {
     const { menu } = this.props;
     const items = menu ? menu.getItems().map(convertItem) : null;
     return (
-      <Menu className="pt-elevation-1">
+      <BpMenu className="pt-elevation-1">
         {items}
-      </Menu>
+      </BpMenu>
     );
   }
 }

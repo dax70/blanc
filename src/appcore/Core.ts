@@ -9,13 +9,13 @@ export type IconName = BPIconName;
 
 export interface ButtonProps {
   text: string;
-  click?: (e: ButtonEvent) => void;
+  onClick?: (e: ButtonEvent) => void;
   iconName?: IconName;
 }
 
 export class Button {
   text: string;
-  click?: (e: ButtonEvent) => void;
+  onClick?: (e: ButtonEvent) => void;
   iconName?: IconName;
 
   constructor(props: ButtonProps) {

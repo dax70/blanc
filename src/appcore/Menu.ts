@@ -34,15 +34,15 @@ export class MenuItem {
   kind: MenuItemKind;
   text: string;
   iconName?: IconName;
-  click?: (e: MenuEvent) => void;
+  onClick?: (e: MenuEvent) => void;
   items?: Array<MenuItem>;
 
   constructor(props: MenuItemProps) {
-    const { text, iconName, kind, click, items } = props;
+    const { text, iconName, kind, onClick, items } = props;
     this.text = text;
     this.iconName = iconName;
     this.kind = kind || MenuItemKind.text;
-    this.click = click;
+    this.onClick = onClick;
     this.items = items ? items.map((i) => new MenuItem(i)) : undefined;
   }
 
