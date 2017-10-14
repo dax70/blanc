@@ -3847,6 +3847,10 @@ performance-now@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/performance-now/-/performance-now-2.1.0.tgz#6309f4e0e5fa913ec1c69307ae364b4b377c9e7b"
 
+photonkit@^0.1.2:
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/photonkit/-/photonkit-0.1.2.tgz#5662c2b02babc11c38cf3f379392e0083ae45512"
+
 pify@^2.0.0, pify@^2.3.0:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/pify/-/pify-2.3.0.tgz#ed141a6ac043a849ea588498e7dca8b15330e90c"

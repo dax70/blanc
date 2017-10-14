@@ -13,6 +13,7 @@
     "@types/react": "^16.0.10",
     "@types/react-addons-css-transition-group": "^15.0.3",
     "@types/react-dom": "^16.0.1",
+    "photonkit": "^0.1.2",
     "react": "^16.0.0",
     "react-addons-css-transition-group": "^15.6.2",
     "react-dom": "^16.0.0"
