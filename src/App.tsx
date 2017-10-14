@@ -5,24 +5,43 @@ import 'normalize.css/normalize.css';
 import '@blueprintjs/core/dist/blueprint.css';
 import Nav from './components/Nav';
 
-import { Dropdown, Menu, MenuItem } from './appcore/Menus';
-import { DropdownAdapter } from './appcore/Adapters';
+import { Dropdown, Menu, MenuItem } from './appcore/Menu';
+
+import { 
+  Window, WindowContent, PaneGroup, Pane, PaneSize, Toolbar, Dropdown as DropdownAdapter
+} from './components';
+
+import 'photonkit/dist/css/photon.css';
 
 class App extends React.Component {
 
   render() {
     const mainMenu = new Menu();
     mainMenu.append(new MenuItem({ text: 'Foo', iconName: 'pt-icon-user' }));
-    mainMenu.append(new MenuItem({ text: 'Bar' }));
+    mainMenu.append(new MenuItem({ text: 'Bar', onClick: (e) => alert('Bar was clicked!')}));
     mainMenu.appendDivider();
     mainMenu.append(new MenuItem({ text: 'Baz' }));
 
     const dropdown = new Dropdown({ text: 'New Dropdwon', menu: mainMenu });
 
-    return (
+    return ( 
       <div className="App">
-        <Nav />
-        <DropdownAdapter dropdown={dropdown} />
+        <Window>
+          <Toolbar>
+            <Nav />
+            <DropdownAdapter dropdown={dropdown} />            
+          </Toolbar>
+          <WindowContent>            
+            <PaneGroup>
+              <Pane size={PaneSize.oneThird} isSidebar={true}>
+                Foo
+              </Pane>
+              <Pane>
+                Bar
+              </Pane>
+            </PaneGroup>
+          </WindowContent>
+        </Window>
       </div>
     );
   }
