@@ -4,7 +4,7 @@ import {
   Menu as AppMenu,
   MenuItem as AppMenuItem,
   MenuItemKind as AppMenuItemKind
-} from '../appcore/Menu';
+} from '../appui/Menu';
 import {
   Menu as BpMenu, 
   MenuItem as BpMenuItem, 
@@ -38,21 +38,21 @@ export class Dropdown extends React.Component<DropdownProps, {}> {
 
   render() {
     const { dropdown } = this.props;
+    const classes = ['pt-button', 'pt-minimal', dropdown.iconName].join(' ');
     return (
       <Popover
         className="main-menu"
-        position={Position.BOTTOM}
+        position={Position.BOTTOM_LEFT}
         inheritDarkTheme={false}
         content={<Menu menu={dropdown.menu} />}
         target={
-          <button className="pt-button pt-minimal pt-icon-document">
+          <button className={classes}>
             {dropdown.text}
             <Icon
               className="pt-align-right"
               iconName="caret-down"
             />
-          </button>
-        }
+          </button>}
       />
     );
   }

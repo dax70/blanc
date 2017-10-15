@@ -5,13 +5,15 @@ import 'normalize.css/normalize.css';
 import '@blueprintjs/core/dist/blueprint.css';
 import Nav from './components/Nav';
 
-import { Dropdown, Menu, MenuItem } from './appcore/Menu';
+import { Dropdown, Menu, MenuItem } from './appui/Menu';
 
 import { 
   Window, WindowContent, PaneGroup, Pane, PaneSize, Toolbar, Dropdown as DropdownAdapter
 } from './components';
 
 import 'photonkit/dist/css/photon.css';
+
+// import './components/Nav.css';
 
 class App extends React.Component {
 
@@ -22,7 +24,11 @@ class App extends React.Component {
     mainMenu.appendDivider();
     mainMenu.append(new MenuItem({ text: 'Baz' }));
 
-    const dropdown = new Dropdown({ text: 'New Dropdwon', menu: mainMenu });
+    const dropdown = new Dropdown({ 
+      text: 'New Dropdwon',
+      iconName: 'pt-icon-control', 
+      menu: mainMenu 
+    });
 
     return ( 
       <div className="App">

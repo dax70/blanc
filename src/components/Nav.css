@@ -1,3 +1,8 @@
-.main-menu .pt-popover-arrow {
+.pt-popover .pt-popover-arrow,
+.pt-popover .pt-popover-arrow::before {
     display: none;
+}
+
+.pt-tether-element-attached-top.pt-tether-target-attached-bottom > .pt-popover {
+    margin-top: 1px;
 }
