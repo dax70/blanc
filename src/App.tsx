@@ -8,12 +8,16 @@ import Nav from './components/Nav';
 import { Dropdown, Menu, MenuItem } from './appui/Menu';
 
 import { 
-  Window, WindowContent, PaneGroup, Pane, PaneSize, Toolbar, Dropdown as DropdownAdapter
+  BlancDocument,
+  Dropdown as DropdownAdapter,
+  Pane, PaneGroup, PaneSize, Toolbar, 
+  Window, WindowContent
 } from './components';
 
 import 'photonkit/dist/css/photon.css';
 
-// import './components/Nav.css';
+import { BlancDocument as DocModel } from './appcore/BlancDocument';
+import HtmlFactory from './appcore/HtmlFactory';
 
 class App extends React.Component {
 
@@ -30,6 +34,16 @@ class App extends React.Component {
       menu: mainMenu 
     });
 
+    const docContent = new DocModel();
+
+    const div1 = HtmlFactory.create(
+      'div',
+      { style: { color: 'blue' }},
+      'Hellow from div'
+    );
+
+    docContent.addComponent(div1);
+
     return ( 
       <div className="App">
         <Window>
@@ -43,7 +57,7 @@ class App extends React.Component {
                 Foo
               </Pane>
               <Pane>
-                Bar
+                <BlancDocument content={docContent}/>
               </Pane>
             </PaneGroup>
           </WindowContent>
