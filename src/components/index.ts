@@ -1,17 +1,19 @@
+import BlancDocument from './BlankDocument';
+import { Menu, Dropdown } from './Menu';
+import Pane, { PaneSize } from './Pane';
+import PaneGroup from './PaneGroup';
+import Toolbar from './Toolbar';
 import Window from './Window';
 import WindowContent from './WindowContent';
-import PaneGroup from './PaneGroup';
-import Pane, { PaneSize } from './Pane';
-import Toolbar from './Toolbar';
-import { Menu, Dropdown } from './Menu';
 
 export {
-  Window,
-  WindowContent,
-  PaneGroup,
+  BlancDocument,
+  Dropdown,
+  Menu,
   Pane,
+  PaneGroup,
   PaneSize,
   Toolbar,
-  Menu,
-  Dropdown
+  Window,
+  WindowContent
 };
