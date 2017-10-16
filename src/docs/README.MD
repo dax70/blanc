@@ -8,6 +8,8 @@ blanc - root object
 registerCommands()
 ```
 
+NotificationManager -> toasts
+
 ## Plugins
 
 ```typescript
