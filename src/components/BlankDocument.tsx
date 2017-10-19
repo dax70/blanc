@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {BlancDocument as DocModel, Node, HtmlNode } from '../appcore/BlancDocument';
+import {BlancDocument as DocModel, Node, HtmlNode } from '../appcore/document';
 
 export type BlancDocumentProps = {
   content: DocModel
@@ -10,6 +10,7 @@ const e = React.createElement;
 const createReactNode = (item: Node, index: number) => {
   if (item.kind === 'HTMLElement') {
     const { tag, props, children } = item as HtmlNode;
+    // TODO: handle onClick | Test selection
     const propExt = {...props, key: index};
     return e(tag, propExt, children);
   }

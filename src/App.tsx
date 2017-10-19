@@ -16,7 +16,7 @@ import {
 
 import 'photonkit/dist/css/photon.css';
 
-import { BlancDocument as DocModel } from './appcore/BlancDocument';
+import { BlancDocument as DocModel } from './appcore/document';
 import HtmlFactory from './appcore/HtmlFactory';
 
 class App extends React.Component {

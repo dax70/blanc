@@ -30,27 +30,3 @@ export interface DocumentNode extends Node {
   kind: NodeKind;
   clone(): Node;
 }
-
-export class BlancDocument {
-    nodes: Array<Node>;
-
-    constructor() {
-      this.nodes = [];
-    }
-
-    addComponent(node: Node) {
-      this.nodes.push(node);
-    }
-
-    getItems() {
-      return this.nodes;
-    }
-
-    serialize() {
-      // Serialize
-    }
-
-    deserialize(json: string) {
-      // Deserialize
-    }
-}

@@ -1,4 +1,12 @@
-import { DocumentNode, HtmlNode, HtmlNodeProps, HtmlTag, HtmlNodeKind, NodeProps, ChildNodes } from './BlancDocument';
+import {
+ DocumentNode, 
+ HtmlNode, 
+ HtmlNodeProps, 
+ HtmlTag, 
+ HtmlNodeKind, 
+ NodeProps, 
+ ChildNodes 
+} from './document';
 
 export class HTMLElement implements DocumentNode, HtmlNode {
   kind: HtmlNodeKind = 'HTMLElement';  
@@ -12,7 +20,7 @@ export class HTMLElement implements DocumentNode, HtmlNode {
     this.props = props;
     this.children = children;
   }
-  
+   
   clone() {
     return Object.assign({}, this);
   }
