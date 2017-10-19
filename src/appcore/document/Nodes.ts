@@ -3,10 +3,11 @@ import { ReactNode } from 'react';
 export type NodeProps = {};
 export type ChildNodes = ReactNode;
 
-export interface Node {
+export interface DocumentNode {
   kind: string;
   props?: NodeProps;
   children?: ChildNodes;
+  clone(): DocumentNode;
 }
 
 // More?
@@ -20,13 +21,6 @@ export type HtmlNodeProps = {
   children?: ChildNodes;
 };
 
-export interface HtmlNode extends Node, HtmlNodeProps {
+export interface HtmlNode extends DocumentNode, HtmlNodeProps {
   kind: HtmlNodeKind;
-}
-
-export type NodeKind  = HtmlNodeKind | string;
-
-export interface DocumentNode extends Node {
-  kind: NodeKind;
-  clone(): Node;
 }

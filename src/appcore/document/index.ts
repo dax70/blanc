@@ -4,7 +4,6 @@ import {
   HtmlNodeProps, 
   HtmlTag, 
   HtmlNodeKind, 
-  Node,
   NodeProps, 
   ChildNodes 
  } from './Nodes';
@@ -18,7 +17,6 @@ export {
   HtmlNodeProps, 
   HtmlTag, 
   HtmlNodeKind, 
-  Node,
   NodeProps, 
   ChildNodes 
  };

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {BlancDocument as DocModel, Node, HtmlNode } from '../appcore/document';
+import {BlancDocument as DocModel, DocumentNode, HtmlNode } from '../appcore/document';
 
 export type BlancDocumentProps = {
   content: DocModel
@@ -7,12 +7,34 @@ export type BlancDocumentProps = {
 
 const e = React.createElement;
 
-const createReactNode = (item: Node, index: number) => {
-  if (item.kind === 'HTMLElement') {
+type El = DocumentNode | string | number;
+
+const createReactNode = (item: El, index?: number): React.ReactNode => {
+
+  // TODO: handle onClick | Test selection
+  if (!item || typeof item === 'string') {
+    return e('span', {}, item);      
+  }
+
+  if (typeof item === 'object' && (item as DocumentNode).kind === 'HTMLElement') {
     const { tag, props, children } = item as HtmlNode;
+    const propExt = index ? {...props, key: index} : {};
+    
     // TODO: handle onClick | Test selection
-    const propExt = {...props, key: index};
-    return e(tag, propExt, children);
+    if (!children || typeof children === 'string') {
+      return e(tag, propExt, children);      
+    }
+
+    if (Array.isArray(children)) {
+      const reactChildren = (children as Array<{}>).map(createReactNode);
+      return e(tag, propExt, reactChildren);                  
+    }
+
+    if (typeof children === 'object') {
+      const reactChild = createReactNode(children as DocumentNode);
+      return e(tag, propExt, reactChild);            
+    }
+
   }
 
   throw new Error('Item kind not supported!');

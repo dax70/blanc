@@ -1,20 +1,20 @@
-import { Node } from './Nodes';
+import { DocumentNode } from './Nodes';
 
 export default class BlancDocument {
-    nodes: Array<Node>;
+    nodes: Array<DocumentNode>;
 
     constructor() {
       this.nodes = [];
     }
 
-    addComponent(node: Node) {
+    addComponent(node: DocumentNode) {
       this.nodes.push(node);
     }
 
     getItems() {
       return this.nodes;
     }
-
+ 
     serialize() {
       // Serialize
     }

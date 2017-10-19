@@ -36,13 +36,26 @@ class App extends React.Component {
 
     const docContent = new DocModel();
 
-    const div1 = HtmlFactory.create(
+    const divContent = HtmlFactory.create(
       'div',
-      { style: { color: 'blue' }},
-      'Hellow from div'
+      {},
+      'Hellow from inside content'
     );
 
-    docContent.addComponent(div1);
+    const mockEl = {
+      kind: 'HTMLElement', 
+      tag: 'div',
+      props: { style: { color: 'blue' }}, 
+      children: 'Hello from object'
+    };
+
+    const root = HtmlFactory.create(
+      'div',
+      {},
+      ['Hello text', divContent, mockEl ]
+    );
+
+    docContent.addComponent(root);
 
     return ( 
       <div className="App">
