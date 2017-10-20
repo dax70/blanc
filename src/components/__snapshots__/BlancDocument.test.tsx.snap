@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BlancDocument mock doc part 1`] = `
+<div
+  className="bl-doc"
+>
+  <div>
+    <span>
+      Hello text
+    </span>
+    <div>
+      Hellow from inside content
+    </div>
+    <div
+      style={
+        Object {
+          "color": "blue",
+        }
+      }
+    >
+      Hello from object
+    </div>
+  </div>
+</div>
+`;

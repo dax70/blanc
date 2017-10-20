@@ -5,9 +5,11 @@
   "devDependencies": {
     "@types/jest": "^21.1.2",
     "@types/node": "^8.0.33",
+    "@types/react-test-renderer": "^16.0.0",
     "enzyme": "^3.1.0",
     "enzyme-adapter-react-16": "^1.0.2",
-    "react-scripts-ts": "2.7.0"
+    "react-scripts-ts": "2.7.0",
+    "react-test-renderer": "^16.0.0"
   },
   "dependencies": {
     "@blueprintjs/core": "^1.31.0",
