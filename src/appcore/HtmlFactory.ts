@@ -28,7 +28,7 @@ export class HTMLElement implements DocumentNode, HtmlNode {
 
 export default class Html {
 
-  static create(tag: HtmlTag, props?: NodeProps, children?: ChildNodes) {
+  static create(tag: HtmlTag, props: NodeProps = {}, children?: ChildNodes) {
     return new HTMLElement({ tag, props, children });
   }
 }
