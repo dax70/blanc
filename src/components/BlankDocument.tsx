@@ -9,16 +9,16 @@ const e = React.createElement;
 
 type El = DocumentNode | string | number;
 
-const createReactNode = (item: El, index?: number): React.ReactNode => {
-
+const createReactNode = (item: El, index: number = 0): React.ReactNode => {
+  const key = index++; 
   // TODO: handle onClick | Test selection
   if (!item || typeof item === 'string') {
-    return e('span', {}, item);      
+    return e('span', { key }, item);      
   }
 
   if (typeof item === 'object' && (item as DocumentNode).kind === 'HTMLElement') {
     const { tag, props, children } = item as HtmlNode;
-    const propExt = index ? {...props, key: index} : {};
+    const propExt = {...props, key } ;
     
     // TODO: handle onClick | Test selection
     if (!children || typeof children === 'string') {
