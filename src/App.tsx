@@ -14,12 +14,19 @@ import {
   Window, WindowContent
 } from './components';
 
+import { Subscription } from './appcore/Subscriptions';
+
 import 'photonkit/dist/css/photon.css';
 
-import { BlancDocument as DocModel } from './appcore/document';
+import { BlancDocument as DocModel, DocumentNode } from './appcore/document';
 import HtmlFactory from './appcore/HtmlFactory';
 
 class App extends React.Component {
+  subscriptions: Array<Subscription> = [];
+
+  componentWillUnmount() {
+    this.subscriptions.forEach(subs => subs.unsubscribe());
+  }
 
   render() {
     const mainMenu = new Menu();
@@ -33,8 +40,6 @@ class App extends React.Component {
       iconName: 'pt-icon-control', 
       menu: mainMenu 
     });
-
-    const docContent = new DocModel();
 
     const divContent = HtmlFactory.create(
       'div',
@@ -54,7 +59,13 @@ class App extends React.Component {
       {},
       ['Hello text', divContent, mockEl ]
     );
+    const docContent = new DocModel();
+    const sub = docContent.onDidAddComponent((docNode: DocumentNode) => {
+      /* tslint:disable */
+      console.log(`Node add: ${docNode}`);
+    });    
 
+    this.subscriptions.push(sub);
     docContent.addComponent(root);
 
     return ( 
