@@ -1,6 +1,16 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`BlancDocument mock doc part 1`] = `
+exports[`BlancDocument Component rendering functionality Basic render -> div Hello 1`] = `
+<div
+  className="bl-doc"
+>
+  <div>
+    Hello
+  </div>
+</div>
+`;
+
+exports[`BlancDocument Component rendering functionality mock part renders correctly 1`] = `
 <div
   className="bl-doc"
 >

@@ -56,17 +56,46 @@ class App extends React.Component {
 
     const root = HtmlFactory.create(
       'div',
-      {},
+      { dataval: 'first' },
       ['Hello text', divContent, mockEl ]
     );
+
+    const third = HtmlFactory.create(
+      'div',
+      { dataval: 'third' },
+      ['Hello third']
+    );
+
+    const second = HtmlFactory.create(
+      'div',
+      { dataval: 'second' },
+      ['Hello Second']
+    );
+
     const docContent = new DocModel();
     const sub = docContent.onDidAddComponent((docNode: DocumentNode) => {
       /* tslint:disable */
       console.log(`Node add: ${docNode}`);
-    });    
+    });   
+    
+    const subInsert = docContent.onDidInsertComponent((args) => {
+      /* tslint:disable */
+      console.log(`Node insert: at ${args.index}`);
+    });   
+
+    const subRemove = docContent.onDidRemoveComponent((args) => {
+      /* tslint:disable */
+      console.log(`Node removed: at ${args.index}`);
+    });   
 
     this.subscriptions.push(sub);
+    this.subscriptions.push(subInsert);
+    this.subscriptions.push(subRemove);    
+    
     docContent.addComponent(root);
+    docContent.addComponent(second);    
+    docContent.insertComponent(1, third);       
+    docContent.removeComponent(root);
 
     return ( 
       <div className="App">

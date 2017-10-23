@@ -1,30 +1,32 @@
 import * as React from 'react';
-import * as renderer from 'react-test-renderer'; 
+import * as renderer from 'react-test-renderer';
 
 import BlancDocument from './BlankDocument';
 import { BlancDocument as DocModel } from '../appcore/document';
 import HtmlFactory from '../appcore/HtmlFactory';
 
-test('BlancDocument renders div Hello', () => {
+describe('BlancDocument Component rendering functionality', () => {
 
-  const docContent = new DocModel();
-  const divContent = HtmlFactory.create(
-    'div',
-    {},
-    'Hello'
-  );
+  test('Basic render -> div Hello', () => {
 
-  docContent.addComponent(divContent);
+    const docContent = new DocModel();
+    const divContent = HtmlFactory.create(
+      'div',
+      {},
+      'Hello'
+    );
 
-  const blancDoc = renderer.create( 
-    <BlancDocument content={docContent} />
-  ).toJSON();
+    docContent.addComponent(divContent);
 
-  expect(blancDoc).toMatchSnapshot();
-});
+    const blancDoc = renderer.create(
+      <BlancDocument content={docContent} />
+    ).toJSON();
 
-test('BlancDocument mock doc part', () => {
-  
+    expect(blancDoc).toMatchSnapshot();
+  });
+
+  test('mock part renders correctly', () => {
+
     const docContent = new DocModel();
 
     const divContent = HtmlFactory.create(
@@ -34,23 +36,24 @@ test('BlancDocument mock doc part', () => {
     );
 
     const mockEl = {
-      kind: 'HTMLElement', 
+      kind: 'HTMLElement',
       tag: 'div',
-      props: { style: { color: 'blue' }}, 
+      props: { style: { color: 'blue' } },
       children: 'Hello from object'
     };
 
     const root = HtmlFactory.create(
       'div',
       {},
-      ['Hello text', divContent, mockEl ]
+      ['Hello text', divContent, mockEl]
     );
 
     docContent.addComponent(root);
-  
+
     const blancDoc = renderer.create(
       <BlancDocument content={docContent} />
     ).toJSON();
 
     expect(blancDoc).toMatchSnapshot();
   });
+});
