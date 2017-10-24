@@ -4,7 +4,9 @@ exports[`BlancDocument Component rendering functionality Basic render -> div Hel
 <div
   className="bl-doc"
 >
-  <div>
+  <div
+    onClick={[Function]}
+  >
     Hello
   </div>
 </div>
@@ -14,14 +16,19 @@ exports[`BlancDocument Component rendering functionality mock part renders corre
 <div
   className="bl-doc"
 >
-  <div>
+  <div
+    onClick={[Function]}
+  >
     <span>
       Hello text
     </span>
-    <div>
+    <div
+      onClick={[Function]}
+    >
       Hellow from inside content
     </div>
     <div
+      onClick={[Function]}
       style={
         Object {
           "color": "blue",
