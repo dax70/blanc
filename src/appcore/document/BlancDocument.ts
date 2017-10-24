@@ -3,10 +3,16 @@ import { EventHandler, IndexedArgs, Subject, Subscription } from '../Subscriptio
 
 export type DocumentCallBack = EventHandler<DocumentNode>;
 
+export type Selection = {
+  index: number;
+  node: DocumentNode;
+};
+
 export type DocumentIndexedCallBack = EventHandler<IndexedArgs<DocumentNode>>;
 
 export default class BlancDocument {
     nodes: Array<DocumentNode>;
+    selection: Selection;
     addSubject: Subject<DocumentNode>;
     insertSubject: Subject<IndexedArgs<DocumentNode>>;
     removeSubject: Subject<IndexedArgs<DocumentNode>>;
@@ -40,6 +46,10 @@ export default class BlancDocument {
 
       this.nodes.splice(index, 1);
       this.removeSubject.next({index, item: node});
+    }
+
+    setSelection(selection: Selection) {
+      this.selection = selection;
     }
 
     //#region Events

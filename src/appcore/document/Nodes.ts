@@ -1,6 +1,10 @@
 import { ReactNode } from 'react';
 
-export type NodeProps = {};
+// Must either define all props as optinal
+// or leave as any
+export type NodeProps = {
+};
+
 export type ChildNodes = ReactNode;
 
 export interface DocumentNode {

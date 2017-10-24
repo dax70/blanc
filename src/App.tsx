@@ -76,16 +76,19 @@ class App extends React.Component {
     const sub = docContent.onDidAddComponent((docNode: DocumentNode) => {
       /* tslint:disable */
       console.log(`Node add: ${docNode}`);
+      /* tslint:enable */      
     });   
     
     const subInsert = docContent.onDidInsertComponent((args) => {
       /* tslint:disable */
       console.log(`Node insert: at ${args.index}`);
+      /* tslint:enable */      
     });   
 
     const subRemove = docContent.onDidRemoveComponent((args) => {
       /* tslint:disable */
       console.log(`Node removed: at ${args.index}`);
+      /* tslint:enable */      
     });   
 
     this.subscriptions.push(sub);
