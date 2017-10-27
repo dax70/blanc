@@ -1,11 +1,11 @@
 import { Component } from 'react';
 
 import { Item } from '../appcore/Item';
-import { NodeProps, ChildNodes } from '../appcore/document';
+import { ComponentProps, ChildrenComponent } from '../appcore/document';
 
 export type DataBoundProps = { 
   item: Item;
-  render: (props: NodeProps, children: ChildNodes) => JSX.Element;
+  render: (props: ComponentProps, children: ChildrenComponent) => JSX.Element;
 };
 
 export class DataBound extends Component<DataBoundProps, {}> {

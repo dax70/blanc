@@ -1,22 +1,22 @@
 import {
-  DocumentNode, 
+  DocumentComponent, 
   HtmlNode, 
-  HtmlNodeProps, 
+  HtmlComponentProps, 
   HtmlTag, 
-  HtmlNodeKind, 
-  NodeProps, 
-  ChildNodes 
- } from './Nodes';
+  HtmlComponentKind, 
+  ComponentProps, 
+  ChildrenComponent 
+ } from './Components';
 
 import BlancDocument from './BlancDocument';
 
 export {
   BlancDocument,
-  DocumentNode, 
+  DocumentComponent, 
   HtmlNode, 
-  HtmlNodeProps, 
+  HtmlComponentProps, 
   HtmlTag, 
-  HtmlNodeKind, 
-  NodeProps, 
-  ChildNodes 
+  HtmlComponentKind, 
+  ComponentProps, 
+  ChildrenComponent 
  };

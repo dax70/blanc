@@ -21,6 +21,8 @@ import 'photonkit/dist/css/photon.css';
 import { BlancDocument as DocModel, DocumentNode } from './appcore/document';
 import HtmlFactory from './appcore/HtmlFactory';
 
+const htmlCreate = HtmlFactory.create;
+
 class App extends React.Component {
   subscriptions: Array<Subscription> = [];
 
@@ -54,22 +56,33 @@ class App extends React.Component {
       children: 'Hello from object'
     };
 
-    const root = HtmlFactory.create(
+    const root = htmlCreate(
       'div',
       { dataval: 'first' },
       ['Hello text', divContent, mockEl ]
     );
 
-    const third = HtmlFactory.create(
+    const third = htmlCreate(
       'div',
       { dataval: 'third' },
       ['Hello third']
     );
 
-    const second = HtmlFactory.create(
+    const innerSecond = htmlCreate(
+      'div',
+      {},
+      ['Hello inner Second']
+    );
+
+    const second = htmlCreate(
       'div',
       { dataval: 'second' },
-      ['Hello Second']
+      ['Hello Second', innerSecond]
+    );
+
+    const fourth = htmlCreate(
+      'div',
+      { dataval: 'fourth' }
     );
 
     const docContent = new DocModel();
@@ -99,7 +112,8 @@ class App extends React.Component {
     docContent.addComponent(second);    
     docContent.insertComponent(1, third);       
     docContent.removeComponent(root);
-
+    docContent.addComponent(fourth);
+    
     return ( 
       <div className="App">
         <Window>

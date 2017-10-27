@@ -40,6 +40,8 @@ const createReactNode = (item: El, index: number = 0, clickHandler?: handler): R
       return e(tag, propExt, reactChild);            
     }
 
+    // return e(tag, propExt);            
+
   }
 
   throw new Error('Item kind not supported!');
@@ -62,7 +64,14 @@ class BlancDocument extends React.Component<BlancDocumentProps, {}> {
     });
 
     /* tslint:disable */
-    console.log(`Dom node selected at: ${index} ${node}`);
+    const docContent = this.props.content;
+    docContent.setSelection({index, node });
+    const selection = docContent.getSelection();
+    if (selection) {
+      const { node: selectedNode } = selection;    
+      console.log(`${selectedNode.kind} ${JSON.stringify(selectedNode.props)}`);
+      console.log(`Dom node selected at: ${index} ${node}`);
+    }
     /* tslint:enable */
   }
 

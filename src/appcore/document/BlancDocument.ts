@@ -1,21 +1,21 @@
-import { DocumentNode } from './Nodes';
+import { DocumentComponent } from './Components';
 import { EventHandler, IndexedArgs, Subject, Subscription } from '../Subscriptions';
 
-export type DocumentCallBack = EventHandler<DocumentNode>;
+export type DocumentCallBack = EventHandler<DocumentComponent>;
 
 export type Selection = {
   index: number;
-  node: DocumentNode;
+  node: DocumentComponent;
 };
 
-export type DocumentIndexedCallBack = EventHandler<IndexedArgs<DocumentNode>>;
+export type DocumentIndexedCallBack = EventHandler<IndexedArgs<DocumentComponent>>;
 
 export default class BlancDocument {
-    nodes: Array<DocumentNode>;
-    selection: Selection;
-    addSubject: Subject<DocumentNode>;
-    insertSubject: Subject<IndexedArgs<DocumentNode>>;
-    removeSubject: Subject<IndexedArgs<DocumentNode>>;
+    nodes: Array<DocumentComponent>;
+    selection?: Selection;
+    addSubject: Subject<DocumentComponent>;
+    insertSubject: Subject<IndexedArgs<DocumentComponent>>;
+    removeSubject: Subject<IndexedArgs<DocumentComponent>>;
      
     constructor() {
       this.nodes = [];
@@ -27,17 +27,17 @@ export default class BlancDocument {
       this.removeSubject = new Subject();      
     } 
 
-    addComponent(node: DocumentNode) {
+    addComponent(node: DocumentComponent) {
       this.nodes.push(node);
       this.addSubject.next(node);
     }
 
-    insertComponent(index: number, node: DocumentNode) {
+    insertComponent(index: number, node: DocumentComponent) {
       this.nodes.splice(index, 0, node);
       this.insertSubject.next({index, item: node});
     }
 
-    removeComponent(node: DocumentNode) {
+    removeComponent(node: DocumentComponent) {
       const index  = this.nodes.indexOf(node);
 
       if (index < 0) {
@@ -49,7 +49,21 @@ export default class BlancDocument {
     }
 
     setSelection(selection: Selection) {
+      const prevSelection = this.selection;
+      if (prevSelection) {
+        const { node: oldNode } = prevSelection;
+        if (oldNode) {
+          oldNode.isSelected = false;
+        }
+      }
+
+      const { node } = selection;
+      node.isSelected = true;
       this.selection = selection;
+    }
+
+    getSelection() {
+      return this.selection;
     }
 
     //#region Events
