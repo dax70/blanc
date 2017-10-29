@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {BlancDocument as DocModel, DocumentNode, HtmlNode } from '../appcore/document';
+import {BlancDocument as DocModel, DocumentComponent, HtmlNode } from '../appcore/document';
 
 export type BlancDocumentProps = {
   content: DocModel
@@ -7,9 +7,9 @@ export type BlancDocumentProps = {
 
 const e = React.createElement;
 
-type handler = (node: DocumentNode, index: number) => void;
+type handler = (node: DocumentComponent, index: number) => void;
 
-type El = DocumentNode | string | number;
+type El = DocumentComponent | string | number;
 
 const createReactNode = (item: El, index: number = 0, clickHandler?: handler): React.ReactNode => {
   const key = index++; 
@@ -21,7 +21,7 @@ const createReactNode = (item: El, index: number = 0, clickHandler?: handler): R
     return e('span', { key }, item);      
   }
 
-  if (typeof item === 'object' && (item as DocumentNode).kind === 'HTMLElement') {
+  if (typeof item === 'object' && (item as DocumentComponent).kind === 'HTMLElement') {
     const { tag, props, children } = item as HtmlNode;
     const propExt = {...props, key, onClick: clickHandler } ;
     
@@ -36,7 +36,7 @@ const createReactNode = (item: El, index: number = 0, clickHandler?: handler): R
     }
 
     if (typeof children === 'object') {
-      const reactChild = createReactNode(children as DocumentNode);
+      const reactChild = createReactNode(children as DocumentComponent);
       return e(tag, propExt, reactChild);            
     }
 
@@ -55,7 +55,7 @@ class BlancDocument extends React.Component<BlancDocumentProps, {}> {
     this.state = { dirty: false };
   }
 
-  handleSelection(node: DocumentNode, index: number) {
+  handleSelection(node: DocumentComponent, index: number) {
     // TODO
     this.setState((prevState, props) => {
       return {

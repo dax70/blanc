@@ -1,20 +1,20 @@
 import {
- DocumentNode, 
+ DocumentComponent, 
  HtmlNode, 
- HtmlNodeProps, 
+ HtmlComponentProps, 
  HtmlTag, 
- HtmlNodeKind, 
- NodeProps, 
- ChildNodes 
+ HtmlComponentKind, 
+ ComponentProps, 
+ ChildrenComponent 
 } from './document';
 
-export class HTMLElement implements DocumentNode, HtmlNode {
-  kind: HtmlNodeKind = 'HTMLElement';  
+export class HTMLElement implements DocumentComponent, HtmlNode {
+  kind: HtmlComponentKind = 'HTMLElement';  
   tag: HtmlTag;
-  props?: NodeProps;
-  children?: ChildNodes;
+  props?: ComponentProps;
+  children?: ChildrenComponent;
 
-  constructor(nodeProps: HtmlNodeProps) {
+  constructor(nodeProps: HtmlComponentProps) {
     const { tag, props, children } = nodeProps;
     this.tag = tag;
     this.props = props;
@@ -28,7 +28,7 @@ export class HTMLElement implements DocumentNode, HtmlNode {
 
 export default class Html {
 
-  static create(tag: HtmlTag, props: NodeProps = {}, children?: ChildNodes) {
+  static create(tag: HtmlTag, props: ComponentProps = {}, children?: ChildrenComponent) {
     return new HTMLElement({ tag, props, children });
   }
 }

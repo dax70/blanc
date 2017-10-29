@@ -1,6 +1,6 @@
 // import { Subscription } from '../Subscriptions';
 
-import { BlancDocument, DocumentNode } from '../document';
+import { BlancDocument, DocumentComponent } from '../document';
 import HtmlFactory from '../HtmlFactory';
 
 describe('Document functionality tests', () => {
@@ -14,7 +14,7 @@ describe('Document functionality tests', () => {
     );
 
     let expected;
-    const callback = jest.fn((docNode: DocumentNode) => { 
+    const callback = jest.fn((docNode: DocumentComponent) => { 
       expected = docNode; 
     });
     const sub = documentContent.onDidAddComponent(callback);   
@@ -40,7 +40,7 @@ describe('Document functionality tests', () => {
     );
 
     let expected;
-    const callback = jest.fn((docNode: DocumentNode) => { 
+    const callback = jest.fn((docNode: DocumentComponent) => { 
       expected = docNode; 
     });
     const sub = documentContent.onDidAddComponent(callback);   
@@ -68,7 +68,7 @@ describe('Document functionality tests', () => {
 
     const actual = { index: 0, item: second };
 
-    let expected: { index: number, item: DocumentNode } | {} = {};
+    let expected: { index: number, item: DocumentComponent } | {} = {};
     const callback = jest.fn((insertArgs) => { expected = insertArgs; });
     const sub = documentContent.onDidInsertComponent(callback);   
 
@@ -97,7 +97,7 @@ describe('Document functionality tests', () => {
 
     const actual = { index: 1, item: second };
 
-    let expected: { index: number, item: DocumentNode } | {} = {};
+    let expected: { index: number, item: DocumentComponent } | {} = {};
     const callback = jest.fn((insertArgs) => { expected = insertArgs; });
     const sub = documentContent.onDidRemoveComponent(callback);   
 

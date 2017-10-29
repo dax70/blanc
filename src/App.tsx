@@ -18,7 +18,7 @@ import { Subscription } from './appcore/Subscriptions';
 
 import 'photonkit/dist/css/photon.css';
 
-import { BlancDocument as DocModel, DocumentNode } from './appcore/document';
+import { BlancDocument as DocModel, DocumentComponent } from './appcore/document';
 import HtmlFactory from './appcore/HtmlFactory';
 
 const htmlCreate = HtmlFactory.create;
@@ -86,7 +86,7 @@ class App extends React.Component {
     );
 
     const docContent = new DocModel();
-    const sub = docContent.onDidAddComponent((docNode: DocumentNode) => {
+    const sub = docContent.onDidAddComponent((docNode: DocumentComponent) => {
       /* tslint:disable */
       console.log(`Node add: ${docNode}`);
       /* tslint:enable */      
