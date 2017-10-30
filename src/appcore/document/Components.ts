@@ -1,11 +1,9 @@
-import { ReactNode } from 'react';
-
 // Must either define all props as optinal
 // or leave as any
 export type ComponentProps = {
 };
 
-export type ChildrenComponent = ReactNode;
+export type ChildrenComponent = {} | Array<object> | string | null | undefined;
 
 export enum ComponentKind {
   Component = 'Component',
