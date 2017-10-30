@@ -11,14 +11,14 @@ export type Selection = {
 export type DocumentIndexedCallBack = EventHandler<IndexedArgs<DocumentComponent>>;
 
 export default class BlancDocument {
-    nodes: Array<DocumentComponent>;
+    components: Array<DocumentComponent>;
     selection?: Selection;
     addSubject: Subject<DocumentComponent>;
     insertSubject: Subject<IndexedArgs<DocumentComponent>>;
     removeSubject: Subject<IndexedArgs<DocumentComponent>>;
      
     constructor() {
-      this.nodes = [];
+      this.components = [];
 
       // TODO consider moving to key based structure
       // and lazy initialize subjects - aggregate subscriptions.
@@ -28,23 +28,23 @@ export default class BlancDocument {
     } 
 
     addComponent(node: DocumentComponent) {
-      this.nodes.push(node);
+      this.components.push(node);
       this.addSubject.next(node);
     }
 
     insertComponent(index: number, node: DocumentComponent) {
-      this.nodes.splice(index, 0, node);
+      this.components.splice(index, 0, node);
       this.insertSubject.next({index, item: node});
     }
 
     removeComponent(node: DocumentComponent) {
-      const index  = this.nodes.indexOf(node);
+      const index  = this.components.indexOf(node);
 
       if (index < 0) {
         throw new Error('Unable to find component to remove.');
       }
 
-      this.nodes.splice(index, 1);
+      this.components.splice(index, 1);
       this.removeSubject.next({index, item: node});
     }
 
@@ -83,7 +83,7 @@ export default class BlancDocument {
     //#endregion
 
     getItems() {
-      return this.nodes;
+      return this.components;
     }
  
     serialize() {

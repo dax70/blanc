@@ -1,15 +1,15 @@
 import {
+ ComponentKind,
  DocumentComponent, 
- HtmlNode, 
+ HtmlComponent, 
  HtmlComponentProps, 
  HtmlTag, 
- HtmlComponentKind, 
  ComponentProps, 
  ChildrenComponent 
 } from './document';
 
-export class HTMLElement implements DocumentComponent, HtmlNode {
-  kind: HtmlComponentKind = 'HTMLElement';  
+export class HTMLElement implements DocumentComponent, HtmlComponent {
+  kind: ComponentKind.Html;  
   tag: HtmlTag;
   props?: ComponentProps;
   children?: ChildrenComponent;

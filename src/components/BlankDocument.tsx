@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {BlancDocument as DocModel, DocumentComponent, HtmlNode } from '../appcore/document';
+import {BlancDocument as DocModel, DocumentComponent, HtmlComponent } from '../appcore/document';
 
 export type BlancDocumentProps = {
   content: DocModel
@@ -21,8 +21,9 @@ const createReactNode = (item: El, index: number = 0, clickHandler?: handler): R
     return e('span', { key }, item);      
   }
 
-  if (typeof item === 'object' && (item as DocumentComponent).kind === 'HTMLElement') {
-    const { tag, props, children } = item as HtmlNode;
+  const htmlComp =  item as HtmlComponent;
+  if (htmlComp) {
+    const { tag, props, children } = htmlComp;
     const propExt = {...props, key, onClick: clickHandler } ;
     
     // TODO: handle onClick | Test selection

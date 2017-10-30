@@ -7,18 +7,21 @@ export type ComponentProps = {
 
 export type ChildrenComponent = ReactNode;
 
+export enum ComponentKind {
+  Component = 'Component',
+  Html = 'HtmlElement',
+  Text = 'Text'
+}
+
 export interface DocumentComponent {
-  kind: string;
+  kind: ComponentKind;
   isSelected?: boolean;
   props?: ComponentProps;
   children?: ChildrenComponent;
-  clone(): DocumentComponent;
 }
 
 // More?
 export type HtmlTag = 'a' | 'div' | 'p' | 'span';
-
-export type HtmlComponentKind = 'HTMLElement';
 
 export type HtmlComponentProps = {
   tag: HtmlTag;  
@@ -26,6 +29,6 @@ export type HtmlComponentProps = {
   children?: ChildrenComponent;
 };
 
-export interface HtmlNode extends DocumentComponent, HtmlComponentProps {
-  kind: HtmlComponentKind;
+export interface HtmlComponent extends DocumentComponent, HtmlComponentProps {
+  kind: ComponentKind.Html;
 }

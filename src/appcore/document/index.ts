@@ -1,9 +1,9 @@
 import {
+  ComponentKind,
   DocumentComponent, 
-  HtmlNode, 
+  HtmlComponent, 
   HtmlComponentProps, 
   HtmlTag, 
-  HtmlComponentKind, 
   ComponentProps, 
   ChildrenComponent 
  } from './Components';
@@ -12,11 +12,11 @@ import BlancDocument from './BlancDocument';
 
 export {
   BlancDocument,
+  ComponentKind,
   DocumentComponent, 
-  HtmlNode, 
+  HtmlComponent, 
   HtmlComponentProps, 
   HtmlTag, 
-  HtmlComponentKind, 
   ComponentProps, 
   ChildrenComponent 
  };
