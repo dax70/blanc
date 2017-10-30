@@ -1,4 +1,4 @@
-import { ComponentKind, DocumentComponent, HtmlComponent } from './Components';
+import { ComponentKind, DocumentComponent } from './Components';
 
 enum NodeKind {
   Leaf,
@@ -52,24 +52,6 @@ class Single implements LeafNode {
   }
 }
 
-class Binary implements BinaryNode {
-  nodeType: NodeType;
-  kind: NodeKind.Binary;
-  value: StringOrObject;
-  parent: VisualNode | null;
-  left: VisualNode;
-  right: VisualNode;
-
-  constructor(value: StringOrObject, nodeType: NodeType) {
-    this.value = value;
-    this.nodeType = nodeType;
-  }
-
-  accept(visitor: VisualNodeVisitor) {
-    visitor.visitBinary(this);
-  }
-}
-
 class Text extends Single {
   value: string;
   constructor(value: string) {
@@ -100,14 +82,14 @@ class VisualNodeBuilder {
     return new Text(value);
   }
 
-  buildHtmlNode(component: HtmlComponent) {
+  buildComposite(component: DocumentComponent, nodeType: NodeType) {
     const { children } = component;
 
     if (!children || typeof children === 'string') {
-      return new Single(children || '', NodeType.Html);
+      return new Single(children || '', nodeType);
     }
 
-    const composite = new Composite(component, NodeType.Html);
+    const composite = new Composite(component, nodeType);
     
     if (Array.isArray(children)) {
       composite.items = children.map(this.build);
@@ -130,9 +112,9 @@ class VisualNodeBuilder {
         case ComponentKind.Text:
           return this.buildTextNode(<string> component.children);
         case ComponentKind.Html:
-          return this.buildHtmlNode(component as HtmlComponent);
         case ComponentKind.Component:
-          break;
+          const nodeType: NodeType = component.kind === ComponentKind.Html ? NodeType.Html : NodeType.Component;
+          return this.buildComposite(component as DocumentComponent, nodeType);                  
         default:
           throw new Error(`NodeType ${component.kind} is not supported.`);    
       }
