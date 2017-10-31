@@ -31,7 +31,9 @@ export default class BlancDocument {
     } 
 
     addComponent(component: DocumentComponent) {
-      this.visualTreeList.push(VisualNodeBuilder.build(component));
+      const nodeBuilder = new VisualNodeBuilder();
+
+      this.visualTreeList.push(nodeBuilder.build(component));
       this.components.push(component);
       this.addSubject.next(component);
     }

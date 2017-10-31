@@ -78,12 +78,6 @@ class Composite implements CompositeNode {
 
 class VisualNodeBuilder {
 
-  static _builder: VisualNodeBuilder = new VisualNodeBuilder();
-  
-  static build(item: string | {}): VisualNode {
-    return VisualNodeBuilder._builder.build(item);
-  }
-
   buildTextNode(value: string): LeafNode {
     return new Text(value);
   }
@@ -97,10 +91,14 @@ class VisualNodeBuilder {
 
     const composite = new Composite(component, nodeType);
     
-    if (Array.isArray(children)) {
-      composite.items = children.map(this.build);
+    if (Array.isArray(children)) { 
+      composite.items = children.map((item) => {
+        return this.build(item);
+      });
     } else if (typeof children === 'object') {
-      composite.items = [ this.build(children)];
+      composite.items = [ this.build(children) ];
+    } else {
+      throw new Error(`type ${typeof(children)} is not supported.`);    
     }
 
     return composite;
