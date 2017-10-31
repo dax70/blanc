@@ -9,7 +9,7 @@ import {
 } from './document';
 
 export class HTMLElement implements DocumentComponent, HtmlComponent {
-  kind: ComponentKind.Html;  
+  kind: ComponentKind.Html = ComponentKind.Html;  
   tag: HtmlTag;
   props?: ComponentProps;
   children?: ChildrenComponent;

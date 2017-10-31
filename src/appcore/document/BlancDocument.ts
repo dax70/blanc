@@ -1,6 +1,8 @@
 import { DocumentComponent } from './Components';
 import { EventHandler, IndexedArgs, Subject, Subscription } from '../Subscriptions';
 
+import { VisualNodeBuilder, VisualNode } from './Nodes';
+
 export type DocumentCallBack = EventHandler<DocumentComponent>;
 
 export type Selection = {
@@ -11,6 +13,7 @@ export type Selection = {
 export type DocumentIndexedCallBack = EventHandler<IndexedArgs<DocumentComponent>>;
 
 export default class BlancDocument {
+    visualTreeList: Array<VisualNode>;
     components: Array<DocumentComponent>;
     selection?: Selection;
     addSubject: Subject<DocumentComponent>;
@@ -19,7 +22,7 @@ export default class BlancDocument {
      
     constructor() {
       this.components = [];
-
+      this.visualTreeList = [];
       // TODO consider moving to key based structure
       // and lazy initialize subjects - aggregate subscriptions.
       this.addSubject = new Subject();
@@ -27,25 +30,26 @@ export default class BlancDocument {
       this.removeSubject = new Subject();      
     } 
 
-    addComponent(node: DocumentComponent) {
-      this.components.push(node);
-      this.addSubject.next(node);
+    addComponent(component: DocumentComponent) {
+      this.visualTreeList.push(VisualNodeBuilder.build(component));
+      this.components.push(component);
+      this.addSubject.next(component);
     }
 
-    insertComponent(index: number, node: DocumentComponent) {
-      this.components.splice(index, 0, node);
-      this.insertSubject.next({index, item: node});
+    insertComponent(index: number, component: DocumentComponent) {
+      this.components.splice(index, 0, component);
+      this.insertSubject.next({index, item: component});
     }
 
-    removeComponent(node: DocumentComponent) {
-      const index  = this.components.indexOf(node);
+    removeComponent(component: DocumentComponent) {
+      const index  = this.components.indexOf(component);
 
       if (index < 0) {
         throw new Error('Unable to find component to remove.');
       }
 
       this.components.splice(index, 1);
-      this.removeSubject.next({index, item: node});
+      this.removeSubject.next({index, item: component});
     }
 
     setSelection(selection: Selection) {
@@ -69,7 +73,7 @@ export default class BlancDocument {
     //#region Events
 
     onDidAddComponent(handler: DocumentCallBack): Subscription {
-      return this.addSubject.subscribe(handler);
+      return this.addSubject.subscribe(handler); 
     }
 
     onDidInsertComponent(handler: DocumentIndexedCallBack): Subscription {
@@ -81,6 +85,10 @@ export default class BlancDocument {
     }
 
     //#endregion
+
+    getTreeList() {
+      return this.visualTreeList;
+    }
 
     getItems() {
       return this.components;

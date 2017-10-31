@@ -7,7 +7,7 @@ export type BlancDocumentProps = {
 
 const e = React.createElement;
 
-type handler = (node: DocumentComponent, index: number) => void;
+type handler = (e: Event) => void;
 
 type El = DocumentComponent | string | number;
 
@@ -81,9 +81,11 @@ class BlancDocument extends React.Component<BlancDocumentProps, {}> {
     const parts = content.getItems();
 
     const children = parts.map((node, index) => {
-      // TODO add click to props 
-      // and subscribe to know which is selected
-      return createReactNode(node, index, () => this.handleSelection (node, index));
+      // tslint:disable-next-line:no-shadowed-variable
+      return createReactNode(node, index, (e) => {
+        e.preventDefault();
+        this.handleSelection (node, index);
+      });
     });
 
     return (

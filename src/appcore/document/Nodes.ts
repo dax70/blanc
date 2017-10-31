@@ -78,6 +78,12 @@ class Composite implements CompositeNode {
 
 class VisualNodeBuilder {
 
+  static _builder: VisualNodeBuilder = new VisualNodeBuilder();
+  
+  static build(item: string | {}): VisualNode {
+    return VisualNodeBuilder._builder.build(item);
+  }
+
   buildTextNode(value: string): LeafNode {
     return new Text(value);
   }
@@ -124,18 +130,31 @@ class VisualNodeBuilder {
   }
 }
 
+interface VisitorHandler {
+  visitLeaf(node: LeafNode): void;
+
+  visitComposite(node: CompositeNode): void;
+
+  visitBinary(node: BinaryNode): void;
+}
+
 class VisualNodeVisitor {
+  visitorHandler: VisitorHandler;
+
+  constructor(visitorHandler: VisitorHandler) {
+    this.visitorHandler = visitorHandler;
+  }
 
   visitLeaf(node: LeafNode) {
-    //
+    this.visitorHandler.visitLeaf(node);
   }
 
   visitComposite(node: CompositeNode) {
-    //
+    this.visitorHandler.visitComposite(node);
   }
 
   visitBinary(node: BinaryNode) {
-    //
+    this.visitorHandler.visitBinary(node);    
   }
 
   visit(node: VisualNode) {
@@ -162,8 +181,10 @@ export {
   LeafNode,
   BinaryNode,
   CompositeNode,
+  VisualNode,
   VisualNodeBuilder,
   VisualNodeVisitor,
+  VisitorHandler,
   Text,
   Composite
 };
