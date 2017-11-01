@@ -7,7 +7,7 @@ export type ChildrenComponent = {} | Array<object> | string | null | undefined;
 
 export enum ComponentKind {
   Component = 'Component',
-  Html = 'HtmlElement',
+  Html = 'HTMLElement',
   Text = 'Text'
 }
 
