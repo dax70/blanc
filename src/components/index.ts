@@ -5,9 +5,11 @@ import PaneGroup from './PaneGroup';
 import Toolbar from './Toolbar';
 import Window from './Window';
 import WindowContent from './WindowContent';
+import BlancProvider from './BlancProvider';
 
 export {
   BlancDocument,
+  BlancProvider,
   Dropdown,
   Menu,
   Pane,

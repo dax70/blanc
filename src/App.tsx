@@ -3,12 +3,15 @@ import './App.css';
 
 import 'normalize.css/normalize.css';
 import '@blueprintjs/core/dist/blueprint.css';
+
+import DebugTools from './tools/DebugTools';
 import Nav from './components/Nav';
 
 import { Dropdown, Menu, MenuItem } from './appui/Menu';
 
 import { 
   BlancDocument,
+  BlancProvider,
   Dropdown as DropdownAdapter,
   Pane, PaneGroup, PaneSize, Toolbar, 
   Window, WindowContent
@@ -127,7 +130,10 @@ class App extends React.Component {
                 Foo
               </Pane>
               <Pane>
-                <BlancDocument content={docContent}/>
+                <BlancProvider docContent={docContent}>
+                  <BlancDocument content={docContent}/>
+                  <DebugTools />
+                </BlancProvider>
               </Pane>
             </PaneGroup>
           </WindowContent>

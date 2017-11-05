@@ -13,10 +13,12 @@ enum NodeType {
 }
 
 type StringOrObject = string | {};
+type ObjectOrNull = {} | null;
 
 type VisualNode = {
   nodeType: NodeType;
   kind: NodeKind;
+  props: {} | null;
   parent: VisualNode | null;
   accept(visitor: VisualNodeVisitor): void;
 };
@@ -39,6 +41,7 @@ type CompositeNode = VisualNode & {
 class Single implements LeafNode {
   nodeType: NodeType;
   kind: NodeKind.Leaf;
+  props: ObjectOrNull;
   value: StringOrObject;
   parent: VisualNode | null;
 
@@ -62,6 +65,7 @@ class Text extends Single {
 class Composite implements CompositeNode {
   nodeType: NodeType;
   kind: NodeKind.Composite;
+  props: ObjectOrNull;
   value: {};
   parent: VisualNode | null;
   items: Array<VisualNode>;
