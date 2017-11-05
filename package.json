@@ -17,6 +17,7 @@
     "react": "^16.0.0",
     "react-addons-css-transition-group": "^15.6.2",
     "react-addons-test-utils": "^15.6.2",
+    "react-dock": "^0.2.4",
     "react-dom": "^16.0.0",
     "rxjs": "^5.5.0"
   },
