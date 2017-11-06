@@ -132,7 +132,7 @@ class App extends React.Component {
               <Pane>
                 <BlancProvider docContent={docContent}>
                   <BlancDocument content={docContent}/>
-                  <DebugTools />
+                  <DebugTools docContent={docContent}/>
                 </BlancProvider>
               </Pane>
             </PaneGroup>
