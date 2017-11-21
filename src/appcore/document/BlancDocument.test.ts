@@ -39,10 +39,11 @@ describe('Document functionality tests', () => {
       ['Hello World']
     );
 
-    let expected;
+    // let expected;
     const callback = jest.fn((docNode: DocumentComponent) => { 
-      expected = docNode; 
+      // expected = docNode; 
     });
+
     const sub = documentContent.onDidAddComponent(callback);   
 
     documentContent.addComponent(first);

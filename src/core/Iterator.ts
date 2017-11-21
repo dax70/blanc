@@ -13,9 +13,10 @@ export type Iterable<T>  = {
   [Symbol.iterator](): Iterator<T>;
 };
 
-interface IterableIterator<T> extends Iterator<T> {
-  [Symbol.iterator](): IterableIterator<T>;
-}
+// Based on Type definitions reference
+// interface IterableIterator<T> extends Iterator<T> {
+//   [Symbol.iterator](): IterableIterator<T>;
+// }
 
 export class ArrayIterator<T> implements Iterator<T> {
   arr: Array<T>;

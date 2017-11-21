@@ -9,6 +9,8 @@ import Nav from './components/Nav';
 
 import { Dropdown, Menu, MenuItem } from './appui/Menu';
 
+// import { transition } from 'd3';
+
 import { 
   BlancDocument,
   BlancProvider,
@@ -77,9 +79,11 @@ class App extends React.Component {
       ['Hello inner Second']
     );
 
+    // const trans = transition()
+
     const second = htmlCreate(
       'div',
-      { dataval: 'second' },
+      { dataval: 'second', style: { border: '1px solid blue' }},
       ['Hello Second', innerSecond]
     );
 
@@ -114,7 +118,7 @@ class App extends React.Component {
     docContent.addComponent(root);
     docContent.addComponent(second);    
     docContent.insertComponent(1, third);       
-    docContent.removeComponent(root);
+    // docContent.removeComponent(root);
     docContent.addComponent(fourth);
     
     return ( 
