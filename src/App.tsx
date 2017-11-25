@@ -9,8 +9,6 @@ import Nav from './components/Nav';
 
 import { Dropdown, Menu, MenuItem } from './appui/Menu';
 
-// import { transition } from 'd3';
-
 import { 
   BlancDocument,
   BlancProvider,
@@ -135,7 +133,7 @@ class App extends React.Component {
               </Pane>
               <Pane>
                 <BlancProvider docContent={docContent}>
-                  <BlancDocument content={docContent}/>
+                  <BlancDocument />
                   <DebugTools docContent={docContent}/>
                 </BlancProvider>
               </Pane>

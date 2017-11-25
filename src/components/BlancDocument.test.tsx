@@ -4,6 +4,7 @@ import * as renderer from 'react-test-renderer';
 import BlancDocument from './BlankDocument';
 import { BlancDocument as DocModel } from '../appcore/document';
 import HtmlFactory from '../appcore/HtmlFactory';
+import { BlancProvider } from './index';
 
 describe('BlancDocument Component rendering functionality', () => {
 
@@ -19,7 +20,9 @@ describe('BlancDocument Component rendering functionality', () => {
     docContent.addComponent(divContent);
 
     const blancDoc = renderer.create(
-      <BlancDocument content={docContent} />
+      <BlancProvider docContent={docContent} >
+        <BlancDocument />
+      </BlancProvider>
     ).toJSON();
 
     expect(blancDoc).toMatchSnapshot();
@@ -51,7 +54,9 @@ describe('BlancDocument Component rendering functionality', () => {
     docContent.addComponent(root);
 
     const blancDoc = renderer.create(
-      <BlancDocument content={docContent} />
+      <BlancProvider docContent={docContent} >
+        <BlancDocument />
+      </BlancProvider>
     ).toJSON();
 
     expect(blancDoc).toMatchSnapshot();

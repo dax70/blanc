@@ -1,8 +1,9 @@
 import * as React from 'react';
+import * as PropTypes from 'prop-types';
 import {BlancDocument as DocModel, DocumentComponent, HtmlComponent } from '../appcore/document';
 
 export type BlancDocumentProps = {
-  content: DocModel
+  // content: DocModel
 };
 
 const e = React.createElement;
@@ -42,13 +43,22 @@ const createReactNode = (item: El, index: number = 0, clickHandler?: handler): R
     }
 
     // return e(tag, propExt);            
-
   }
 
   throw new Error('Item kind not supported!');
 };
 
+interface DocumentContext {
+  docContent: DocModel;
+}
+
 class BlancDocument extends React.Component<BlancDocumentProps, {}> {
+  
+  static contextTypes = {
+    docContent: PropTypes.object
+  };
+
+  context: DocumentContext;
 
   constructor(props: BlancDocumentProps) {
     super(props);
@@ -65,7 +75,7 @@ class BlancDocument extends React.Component<BlancDocumentProps, {}> {
     });
 
     /* tslint:disable */
-    const docContent = this.props.content;
+    const docContent = this.context.docContent;
     docContent.setSelection({index, node });
     const selection = docContent.getSelection();
     if (selection) {
@@ -77,8 +87,8 @@ class BlancDocument extends React.Component<BlancDocumentProps, {}> {
   }
 
   render() {
-    const { content } = this.props;
-    const parts = content.getItems();
+    const docContent = this.context.docContent;
+    const parts = docContent.getItems();
 
     const children = parts.map((node, index) => {
       // tslint:disable-next-line:no-shadowed-variable

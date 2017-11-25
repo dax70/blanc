@@ -6,24 +6,25 @@
     "@types/jest": "^21.1.2",
     "@types/node": "^8.0.33",
     "@types/react-test-renderer": "^16.0.0",
-    "react-scripts-ts": "2.7.0",
+    "react-scripts-ts": "2.8.0",
     "react-test-renderer": "^16.0.0"
   },
   "dependencies": {
     "@blueprintjs/core": "^1.32.0",
     "@types/d3": "^4.11.1",
+    "@types/prop-types": "^15.5.2",
     "@types/react": "^16.0.10",
     "@types/react-dom": "^16.0.1",
     "d3": "^4.11.0",
     "photonkit": "^0.1.2",
+    "prop-types": "^15.6.0",
     "react": "^16.0.0",
     "react-addons-css-transition-group": "^15.6.2",
     "react-addons-test-utils": "^15.6.2",
     "react-dock": "^0.2.4",
     "react-dom": "^16.0.0",
     "react-json-tree": "^0.11.0",
-    "rxjs": "^5.5.0",
-    "typescript": "^2.6.1"
+    "rxjs": "^5.5.0"
   },
   "scripts": {
     "start": "react-scripts-ts start",
